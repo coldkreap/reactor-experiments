@@ -1,0 +1,27 @@
+plugins {
+    // The dependency-management plugin allows us to use the BOM (Bill Of Materials) for Spring dependency versions.
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    // The boot plugin is needed, since the gateway is a boot application, this will add the tasks for building the executable JAR (i.e., bootJar).
+    id 'org.springframework.boot' version '2.3.6.RELEASE'
+    id 'java'
+}
+
+group = 'com.coldkreap'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        // The BOM will ensure that the Spring dependencies are versions that are known to work together.
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR9'
+    }
+}
+
+dependencies {
+    // Notice how we don't have to specify the version of the gateway. The BOM will get us the right version.
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+}

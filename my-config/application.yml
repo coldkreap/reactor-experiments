@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: example_route
+          uri: http://httpbin.org
+          predicates:
+            - Path=/exampleRoute
+          filters:
+            - name: AddUuidRequestHeader
+              args:
+                name: My-Session-Id
+            - RewritePath=/exampleRoute, /anything
