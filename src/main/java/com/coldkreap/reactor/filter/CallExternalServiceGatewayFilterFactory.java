@@ -1,5 +1,7 @@
 package com.coldkreap.reactor.filter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.cloud.netflix.hystrix.HystrixCommands;
@@ -11,6 +13,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class CallExternalServiceGatewayFilterFactory
         extends AbstractGatewayFilterFactory<CallExternalServiceGatewayFilterFactory.Config> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CallExternalServiceGatewayFilterFactory.class);
 
     private final WebClient client;
 
@@ -31,18 +35,21 @@ public class CallExternalServiceGatewayFilterFactory
 
             final Mono<String> stringMono = client
                 .get() // TODO: Set up stubs to call and actually get data back with.
+                .uri("/health")
                 .exchange()
                 .flatMap(this::processResponse);
 
             return HystrixCommands.from(stringMono).commandName("externalService").toMono()
                 .flatMap(responseString -> {
                     // TODO: do something with response string
+                    LOG.info("Deserialized Body => {}.", responseString);
                     return chain.filter(exchange);
                 });
         });
     }
 
     private Mono<String> processResponse(final ClientResponse clientResponse) {
+        LOG.info("Processing Response.");
         return clientResponse.bodyToMono(String.class);
     }
 

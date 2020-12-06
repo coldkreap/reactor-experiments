@@ -4,9 +4,13 @@ services:
   # Builds and deploys my spring-cloud-gateway
   scg:
     build: .
+    environment:
+      ENABLE_DEBUG: 'true'
     ports:
       - 8080:8080
       - 5005:5005
+    volumes:
+      - ./my-config:/srv/gateway/config
 
   # Deploys an httpbin instance
   httpbin:
@@ -17,7 +21,7 @@ services:
   # Deploys a wiremock instance
   wiremock:
     image: rodolpheche/wiremock:latest
-    volumes:
-      - ./stubs:/home/wiremock
     ports:
       - 8082:8080
+    volumes:
+      - ./stubs:/home/wiremock

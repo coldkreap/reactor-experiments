@@ -2,15 +2,21 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: example_route
-          uri: http://httpbin.org
+        - id: uuid_route
+          uri: http://httpbin:80
           predicates:
-            - Path=/exampleRoute
+            - Path=/uuidRoute
           filters:
-            - name: AddUuidRequestHeader
-              args:
-                name: My-Session-Id
-            - RewritePath=/exampleRoute, /anything
+            - AddUuidRequestHeader=My-Session-Id
+            - RewritePath=/uuidRoute, /anything
+
+        - id: external_call_route
+          uri: http://httpbin:80
+          predicates:
+            - Path=/externalRoute
+          filters:
+            - CallExternalService
+            - RewritePath=/externalRoute, /anything
 
 externalService:
   connectTimeoutMs: 250
