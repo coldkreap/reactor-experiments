@@ -2,8 +2,8 @@
 A sample project to learn reactive programming. The following technologies will be used and explored.
 
 ## TODO:
-- [ ] 
-- [ ] Add docker-compose with httpbin and wiremock
+- [ ] Document current working stuff. Add curls to readme to run example requests.
+- [ ] Currently timing out on WebClient, need to test the hystrix circuit times out.
 - [ ] Add extension
 - [ ] Add unit testing
 - [ ] Write about traps and sshuttle

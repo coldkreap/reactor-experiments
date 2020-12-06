@@ -1,0 +1,19 @@
+{
+  "request" : {
+    "urlPath": "/somePath",
+    "method": "GET",
+    "headers" : {
+      "TEST" : {
+        "equalTo" : "SLOW"
+      }
+    }
+  },
+  "response" : {
+    "status" : 200,
+    "fixedDelayMilliseconds": 2000,
+    "body": "some slow response",
+    "headers": {
+      "Content-Type": "text/plain"
+    }
+  }
+}

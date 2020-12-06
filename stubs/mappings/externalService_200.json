@@ -1,6 +1,6 @@
 {
   "request" : {
-    "urlPath": "/health",
+    "urlPath": "/somePath",
     "method": "GET"
   },
   "response" : {
