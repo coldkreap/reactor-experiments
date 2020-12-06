@@ -11,3 +11,9 @@ spring:
               args:
                 name: My-Session-Id
             - RewritePath=/exampleRoute, /anything
+
+externalService:
+  connectTimeoutMs: 250
+  readTimeoutMs: 500
+  writeTimeoutMs: 500
+  uri: http://wiremock:8080

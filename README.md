@@ -6,6 +6,8 @@ A sample project to learn reactive programming. The following technologies will 
 - [ ] Add docker-compose with httpbin and wiremock
 - [ ] Add extension
 - [ ] Add unit testing
+- [ ] Write about traps and sshuttle
+- [ ] Learn about AWS, Jenkins, Deployments, Kubernetes 
 
 ## Technologies
 - Java 11 (todo: Look into newer version)

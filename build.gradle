@@ -24,4 +24,5 @@ dependencyManagement {
 dependencies {
     // Notice how we don't have to specify the version of the gateway. The BOM will get us the right version.
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 }
